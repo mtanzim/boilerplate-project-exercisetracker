@@ -42,7 +42,7 @@ var Exercise = new Schema({
           // console.log(`year ok ${isValid}`);
           isValid = isValid && (mm >= 1 && mm <= 12);
           // console.log(`month ok ${isValid}`);
-          isValid = isValid && (dd >= 1 && dd >= 31);
+          isValid = isValid && (dd >= 1 && dd <= 31);
           // console.log(`date ok ${isValid}`);
         }
 
