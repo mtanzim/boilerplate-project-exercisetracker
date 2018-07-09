@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+const testDate = require('../helpers/dateTest')
+
 // const findUser = require("../controllers/user.controller").getOneUser;
 
 var Exercise = new Schema({
@@ -24,31 +26,7 @@ var Exercise = new Schema({
   date: {
     type: String,
     validate: {
-      validator: function (inputDate) {
-        let isValid = true;
-        // console.log(inputDate);
-        isValid = (/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/g).test(inputDate);
-        // console.log(`matched regex ${isValid}`);
-        
-        if (isValid) {
-          let tokens = inputDate.split('-');
-          // console.log(tokens);
-          //year
-          let yyyy = Number(tokens[0]);
-          let mm = Number(tokens[1]);
-          let dd = Number(tokens[2]);
-          
-          isValid =  (yyyy >= 1900 && yyyy <= 2018);
-          // console.log(`year ok ${isValid}`);
-          isValid = isValid && (mm >= 1 && mm <= 12);
-          // console.log(`month ok ${isValid}`);
-          isValid = isValid && (dd >= 1 && dd <= 31);
-          // console.log(`date ok ${isValid}`);
-        }
-
-        return isValid;
-
-      },
+      validator: testDate,
       message: 'Please specify a date between 1900 and 2018 with the format yyyy-mm-dd!',
     },
   }
